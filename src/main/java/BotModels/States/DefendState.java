@@ -160,9 +160,15 @@ public class DefendState extends BotState{
         PlayerAction playerAction = new PlayerAction();
         playerAction.action = PlayerActions.START_AFTERBURNER;
 
-        GameObject closestEnemy = getBiggerEnemiesInRange(CLOSE_DISTANCE).stream().sorted(Comparator.comparing(x -> getDistanceToBot(x))).collect(Collectors.toList()).get(0);
-        playerAction.heading =  -1 * getHeadingBetween(closestEnemy) + 360;
+        List<GameObject> biggerEnemiesClose = getBiggerEnemiesInRange(CLOSE_DISTANCE);
+        GameObject closestEnemy = biggerEnemiesClose.size() > 0 ? 
+            biggerEnemiesClose.stream().sorted(Comparator.comparing(x -> getDistanceToBot(x))).collect(Collectors.toList()).get(0) : null ;
 
+        if (closestEnemy == null) {
+            playerAction.heading = bot.currentHeading;
+        } else {
+            playerAction.heading =  (getHeadingBetween(closestEnemy) + 180) % 360;
+        }
         return playerAction;
     }
 
@@ -200,9 +206,15 @@ public class DefendState extends BotState{
         PlayerAction playerAction = new PlayerAction();
         playerAction.action = bot.getSpeed() < 10 ? PlayerActions.START_AFTERBURNER : PlayerActions.FORWARD;
 
-        GameObject closestWormhole = getGameObjectsByType(getGameObjectsAtBotArea(CLOSE_DISTANCE), ObjectTypes.WORMHOLE).
-                        stream().sorted(Comparator.comparing(x -> getDistanceToBot(x))).collect(Collectors.toList()).get(0);
-        playerAction.heading =  -1 * getHeadingBetween(closestWormhole) + 360;
+        List<GameObject> wormholesClose = getGameObjectsByType(getGameObjectsAtBotArea(CLOSE_DISTANCE), ObjectTypes.WORMHOLE);
+        GameObject closestWormhole = wormholesClose.size() > 0 ? 
+            wormholesClose.stream().sorted(Comparator.comparing(x -> getDistanceToBot(x))).collect(Collectors.toList()).get(0) : null ;
+        
+        if (closestWormhole == null) {
+            playerAction.heading = bot.currentHeading;
+        } else {
+            playerAction.heading =  getHeadingBetween(closestWormhole);
+        }
 
         return playerAction;
     }

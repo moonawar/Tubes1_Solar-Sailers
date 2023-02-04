@@ -47,7 +47,7 @@ public class BotBrain {
         BotState.gameState = GetGameState();
         BotState.bot = GetBot();
 
-        float highestPriority = 0;
+        float highestPriority = -99;
         BotState bestState = null;
 
         for (BotState state : states) {
