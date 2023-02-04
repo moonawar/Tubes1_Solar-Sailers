@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 
 public class Main {
-
     public static void main(String[] args) throws Exception {
         Logger logger = LoggerFactory.getLogger(Main.class);
         BotService botService = new BotService();
