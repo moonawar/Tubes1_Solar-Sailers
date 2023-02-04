@@ -36,6 +36,11 @@ public abstract class BotState {
         return getDistance(object1.getPosition(), object2.getPosition());
     }
 
+    protected double getDistanceToBot(GameObject object) {
+        // Mengembalikan jarak antara bot dan game object lain
+        return getDistance(bot.getPosition(), object.getPosition());
+    }
+
     protected int getHeading(Position position) {
         // Mengembalikan heading antara bot dengan posisi lain
         var direction = toDegrees(Math.atan2(position.y - bot.getPosition().y, position.x - bot.getPosition().x));
