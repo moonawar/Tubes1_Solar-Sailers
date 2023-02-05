@@ -73,7 +73,7 @@ public class DefendState extends BotState{
 
     private List<GameObject> getTorpedosInRange(int distance) {
         // Mengembalikan list musuh yang lebih besar dari ship yang berada di area sekitar ship (CLOSE DISTANCE)
-        List<GameObject> torpedoes = getGameObjectsByType(getGameObjectsAtBotArea(distance), ObjectTypes.TORPEDO_SALVO).
+        List<GameObject> torpedoes = getGameObjectsByType(getGameObjectsAtBotArea(distance), ObjectTypes.TORPEDOSALVO).
             stream().filter(x -> isObjectHeadingToBot(x, distance/DISTANCE_TO_TOLERANCE_RATIO)).collect(Collectors.toList());
         return torpedoes;
     }
@@ -85,7 +85,7 @@ public class DefendState extends BotState{
     }
 
     private List<GameObject> getSupernovaProjInRange(int distance){
-        List<GameObject> supernovaProjectiles = getGameObjectsByType(getGameObjectsAtBotArea(distance), ObjectTypes.SUPERNOVA_BOMB).
+        List<GameObject> supernovaProjectiles = getGameObjectsByType(getGameObjectsAtBotArea(distance), ObjectTypes.SUPERNOVABOMB).
             stream().filter(x -> isObjectHeadingToBot(x, distance/DISTANCE_TO_TOLERANCE_RATIO)).collect(Collectors.toList());
         return supernovaProjectiles;
     }
@@ -116,7 +116,7 @@ public class DefendState extends BotState{
     
     private PlayerAction shieldAction(){
         PlayerAction playerAction = new PlayerAction();
-        playerAction.action = PlayerActions.ACTIVATE_SHIELD;
+        playerAction.action = PlayerActions.ACTIVATESHIELD;
         playerAction.heading = bot.currentHeading;
 
         return playerAction;
@@ -158,7 +158,7 @@ public class DefendState extends BotState{
 
     private PlayerAction afterburnerAction(){
         PlayerAction playerAction = new PlayerAction();
-        playerAction.action = PlayerActions.START_AFTERBURNER;
+        playerAction.action = PlayerActions.STARTAFTERBURNER;
 
         List<GameObject> biggerEnemiesClose = getBiggerEnemiesInRange(CLOSE_DISTANCE);
         GameObject closestEnemy = biggerEnemiesClose.size() > 0 ? 
@@ -167,7 +167,7 @@ public class DefendState extends BotState{
         if (closestEnemy == null) {
             playerAction.heading = bot.currentHeading;
         } else {
-            playerAction.heading =  (getHeadingBetween(closestEnemy) + 180) % 360;
+            playerAction.heading =  (getHeadingBetween(closestEnemy) + 120) % 360;
         }
         return playerAction;
     }
@@ -204,7 +204,7 @@ public class DefendState extends BotState{
 
     private PlayerAction wormholeAction(){
         PlayerAction playerAction = new PlayerAction();
-        playerAction.action = bot.getSpeed() < 10 ? PlayerActions.START_AFTERBURNER : PlayerActions.FORWARD;
+        playerAction.action = bot.getSpeed() < 10 ? PlayerActions.STARTAFTERBURNER : PlayerActions.FORWARD;
 
         List<GameObject> wormholesClose = getGameObjectsByType(getGameObjectsAtBotArea(CLOSE_DISTANCE), ObjectTypes.WORMHOLE);
         GameObject closestWormhole = wormholesClose.size() > 0 ? 
