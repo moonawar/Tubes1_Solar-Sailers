@@ -11,7 +11,7 @@ import java.util.stream.*;
 public class GatherFood extends BotState{
 
     private final int VERY_CLOSE_DISTANCE = 10;
-    private final int CLOSE_DISTANCE = 70;
+    private final int CLOSE_DISTANCE = 50;
     private final int MEDIUM_DISTANCE =150;
     private final int FAR_DISTANCE =  200;
     private final int VERY_FAR_DISTANCE =400;
@@ -28,10 +28,14 @@ public class GatherFood extends BotState{
 
         if (foodDensityInRange(bot.getSize() + VERY_CLOSE_DISTANCE)>=1){
             playerAction = getClosestFood();
-        } else if (foodDensityInRange(bot.getSize() + CLOSE_DISTANCE)>=7){
+        } else if (foodDensityInRange(bot.getSize() + CLOSE_DISTANCE)>=5){
             playerAction = getClosestFood();
         } else {
             playerAction = goToNewArea();
+        }
+
+        if(distanceToBoundary()-bot.getSize() < 15){
+            playerAction = dodgeGCnBoundary();
         }
         return playerAction;
     }
@@ -78,6 +82,10 @@ public class GatherFood extends BotState{
         return ((idx_max)*60) + 30;
     }
 
+    private double distanceToBoundary(){
+        return gameState.getWorld().getRadius()-getDistance(gameState.getWorld().getCenterPoint(),bot.getPosition());
+    }
+
     /* GATHER FOOD */
 
     private PlayerAction getClosestFood(){
@@ -118,6 +126,12 @@ public class GatherFood extends BotState{
         return playerAction;
     }
 
+    private PlayerAction dodgeGCnBoundary(){
+        PlayerAction playerAction = new PlayerAction();
+        playerAction.action = PlayerActions.FORWARD;
+        playerAction.heading = getHeading(gameState.getWorld().getCenterPoint());
+        return playerAction;
+    }
 
     /* GATHER FOOD */
 }
