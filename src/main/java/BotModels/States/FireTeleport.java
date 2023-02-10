@@ -1,4 +1,4 @@
-package BotModels.States;
+/* package BotModels.States;
 
 import BotModels.*;
 import Enums.*;
@@ -8,8 +8,9 @@ import java.util.*;
 import java.util.stream.*;
 
 public class FireTeleport extends BotState{
-    /* ABSTRACT METHOD */
+    /* ABSTRACT METHOD 
     public float calculatePriorityScore(){}
     public PlayerAction calculatePlayerAction(){}
     
 }
+*/

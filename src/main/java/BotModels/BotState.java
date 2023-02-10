@@ -3,6 +3,7 @@ package BotModels;
 import Models.*;
 import Enums.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.vecmath.Vector2d;
 
@@ -59,18 +60,18 @@ public abstract class BotState {
 
     protected List<GameObject> getGameObjectsByType(ObjectTypes type) {
         // Mengembalikan list game object berdasarkan tipe
-        return gameState.getGameObjects().stream().filter(item -> item.getGameObjectType() == type).toList();
+        return gameState.getGameObjects().stream().filter(item -> item.getGameObjectType() == type).collect(Collectors.toList());
     }
 
     protected List<GameObject> getGameObjectsByType(List<GameObject> gameObjects, ObjectTypes type) {
         // Mengembalikan list game object berdasarkan tipe dari list game object
-        return gameObjects.stream().filter(item -> item.getGameObjectType() == type).toList();
+        return gameObjects.stream().filter(item -> item.getGameObjectType() == type).collect(Collectors.toList());
     }
 
     protected List<GameObject> getGameObjectsAtArea(Position position, int radius) {
         // Mengembalikan list game object yang berada di area radius dari posisi tertentu
         return gameState.getGameObjects().stream()
-                .filter(item -> getDistance(position, item.getPosition()) <= radius).toList();
+                .filter(item -> getDistance(position, item.getPosition()) <= radius).collect(Collectors.toList());
     }
 
     protected List<GameObject> getGameObjectsAtBotArea(int radius) {

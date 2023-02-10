@@ -21,14 +21,14 @@ public class TorpedoAttack extends BotState{
                 else{
                     List<GameObject> enemyInRangeListVeryClose = enemyInRange(VERY_CLOSE_DISTANCE);
                     if(enemyInRangeListVeryClose.size() == 0){
-                        double dist = getDistClosestEnemy(getObjClosestEnemy(enemyInRangeListClose));
-                        float prio = ((float) dist/CLOSE_DISTANCE * 80/100) + (sizeSaveToAttack() * 20/100);
-                        return prio;
+                        //double dist = getDistClosestEnemy(getObjClosestEnemy(enemyInRangeListClose));
+                        //float prio = ((float) dist/CLOSE_DISTANCE * 80/100) + (sizeSaveToAttack() * 20/100);
+                        return 1000;
                     }
                     else{
-                        double dist = getDistClosestEnemy(getObjClosestEnemy(enemyInRangeListVeryClose));
-                        float prio = ((float) dist/VERY_CLOSE_DISTANCE * 80/100) + (sizeSaveToAttack() * 20/100);
-                        return prio;
+                        //double dist = getDistClosestEnemy(getObjClosestEnemy(enemyInRangeListVeryClose));
+                        //float prio = ((float) dist/VERY_CLOSE_DISTANCE * 80/100) + (sizeSaveToAttack() * 20/100);
+                        return 1000;
                     }
                 }
             }
@@ -73,7 +73,7 @@ public class TorpedoAttack extends BotState{
 
     private PlayerAction attackTorpedo(GameObject enemy){
         PlayerAction playerAction = new PlayerAction();
-        playerAction.action = PlayerActions.FIRE_TORPEDOES;
+        playerAction.action = PlayerActions.FIRETORPEDOES;
         playerAction.heading = getHeadingBetween(enemy);
         return playerAction;
     }

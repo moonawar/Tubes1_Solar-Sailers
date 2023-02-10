@@ -57,9 +57,9 @@ public class GatherFood extends BotState{
         // belum ngitung lawan
         int food = getGameObjectsByType(objects, ObjectTypes.FOOD).size();
         int superFood = getGameObjectsByType(ObjectTypes.SUPERFOOD).size();
-        int gasCloud = getGameObjectsByType(ObjectTypes.GAS_CLOUD).size();
-        int torpedo = getGameObjectsByType(ObjectTypes.TORPEDO_SALVO).size();
-        int supernova = getGameObjectsByType(ObjectTypes.SUPERNOVA_PICKUP).size();
+        int gasCloud = getGameObjectsByType(ObjectTypes.GASCLOUD).size();
+        int torpedo = getGameObjectsByType(ObjectTypes.TORPEDOSALVO).size();
+        int supernova = getGameObjectsByType(ObjectTypes.SUPERNOVAPICKUP).size();
 
         return food*10 + superFood*15 + gasCloud * (-30) + torpedo*(-20) + supernova*20;
     }
