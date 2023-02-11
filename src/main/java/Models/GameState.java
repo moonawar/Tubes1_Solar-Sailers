@@ -37,7 +37,7 @@ public class GameState {
     }
 
     public List<GameObject> getPlayerGameObjects() {
-        return playerGameObjects;
+        return this.playerGameObjects;
     }
 
     public void setPlayerGameObjects(List<GameObject> playerGameObjects) {

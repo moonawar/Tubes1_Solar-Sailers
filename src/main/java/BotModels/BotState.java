@@ -63,6 +63,11 @@ public abstract class BotState {
         return gameState.getGameObjects().stream().filter(item -> item.getGameObjectType() == type).collect(Collectors.toList());
     }
 
+    protected List<GameObject> getPlayers(ObjectTypes type) {
+        // Mengembalikan list game object berdasarkan tipe
+        return gameState.getPlayerGameObjects().stream().collect(Collectors.toList());
+    }
+
     protected List<GameObject> getGameObjectsByType(List<GameObject> gameObjects, ObjectTypes type) {
         // Mengembalikan list game object berdasarkan tipe dari list game object
         return gameObjects.stream().filter(item -> item.getGameObjectType() == type).collect(Collectors.toList());
@@ -73,10 +78,20 @@ public abstract class BotState {
         return gameState.getGameObjects().stream()
                 .filter(item -> getDistance(position, item.getPosition()) <= radius).collect(Collectors.toList());
     }
+    protected List<GameObject> getPlayersAtArea(Position position, int radius) {
+        // Mengembalikan list game object yang berada di area radius dari posisi tertentu
+        return gameState.getPlayerGameObjects().stream()
+                .filter(item -> getDistance(position, item.getPosition()) <= radius && item.getId() != bot.getId()).collect(Collectors.toList());
+    }
 
     protected List<GameObject> getGameObjectsAtBotArea(int radius) {
         // Mengembalikan list game object yang berada di area radius dari posisi bot
         return getGameObjectsAtArea(bot.getPosition(), radius);
+    }
+
+    protected List<GameObject> getPlayersAtBotArea(int radius) {
+        // Mengembalikan list game object yang berada di area radius dari posisi bot
+        return getPlayersAtArea(bot.getPosition(), radius);
     }
 
     protected boolean isObjectHeadingTo(GameObject obj, Position position, double distanceTolerance) {

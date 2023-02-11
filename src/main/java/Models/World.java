@@ -6,6 +6,18 @@ public class World {
   public Integer radius;
   public Integer currentTick;
 
+  public World(){
+    centerPoint = new Position();
+    radius =0;
+    currentTick =0;
+
+  }
+  public World(Position a, Integer r, Integer t){
+    this.centerPoint = a;
+    this.radius = r;
+    this.currentTick = t;
+  }
+
   public Position getCenterPoint() {
     return centerPoint;
   }
