@@ -84,7 +84,7 @@ public class TorpedoAttack extends BotState{
     private PlayerAction attackTorpedo(GameObject enemy){
         PlayerAction playerAction = new PlayerAction();
         playerAction.action = PlayerActions.FIRETORPEDOES;
-        playerAction.heading = getHeadingBetween(enemy);
+        playerAction.heading = getHeadingBetween(enemy) - 5;
         return playerAction;
     }
 }

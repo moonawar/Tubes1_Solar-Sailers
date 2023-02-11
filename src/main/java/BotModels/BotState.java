@@ -1,11 +1,15 @@
 package BotModels;
 
-import Models.*;
-import Enums.*;
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.vecmath.Vector2d;
+
+import Enums.ObjectTypes;
+import Models.GameObject;
+import Models.GameState;
+import Models.PlayerAction;
+import Models.Position;
 
 public abstract class BotState {
     public static GameState gameState;
