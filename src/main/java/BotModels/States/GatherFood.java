@@ -10,7 +10,7 @@ import java.util.stream.*;
 
 public class GatherFood extends BotState{
 
-    private final int VERY_CLOSE_DISTANCE = 10;
+    private final int VERY_CLOSE_DISTANCE = 32;
     private final int CLOSE_DISTANCE = 50;
     private final int MEDIUM_DISTANCE =150;
     private final int FAR_DISTANCE =  200;
@@ -24,19 +24,25 @@ public class GatherFood extends BotState{
 
     public PlayerAction calculatePlayerAction(){
         PlayerAction playerAction = new PlayerAction();
-        playerAction = getClosestFood();
+        playerAction = goToClosestFood();
 
-        if (foodDensityInRange(bot.getSize() + VERY_CLOSE_DISTANCE)>=1){
-            playerAction = getClosestFood();
+        if (bot.getSize()<=15 || foodDensityInRange(bot.getSize() + VERY_CLOSE_DISTANCE)>=1){
+            playerAction = goToClosestFood();
         } else if (foodDensityInRange(bot.getSize() + CLOSE_DISTANCE)>=5){
-            playerAction = getClosestFood();
+            playerAction = goToClosestFood();
         } else {
             playerAction = goToNewArea();
         }
-
-        if(distanceToBoundary()-bot.getSize() < 15){
-            playerAction = dodgeGCnBoundary();
+        
+        if(!getGasCloud().isEmpty() && distanceToGasCloud()-bot.getSize() < 50){
+            playerAction = dodgeGasCloud();
         }
+
+        if(distanceToBoundary()-bot.getSize() < 50){
+            playerAction = dodgeBoundary();
+        }
+    
+
         return playerAction;
     }
 
@@ -57,7 +63,7 @@ public class GatherFood extends BotState{
     }
 
     private int calculateDensity(List<GameObject> objects){
-        // menghitung density (not finished)
+        // menghitung density
         // belum ngitung lawan
         int food = getGameObjectsByType(objects, ObjectTypes.FOOD).size();
         int superFood = getGameObjectsByType(ObjectTypes.SUPERFOOD).size();
@@ -86,9 +92,46 @@ public class GatherFood extends BotState{
         return gameState.getWorld().getRadius()-getDistance(gameState.getWorld().getCenterPoint(),bot.getPosition());
     }
 
+    private List<GameObject> getGasCloud(){
+        List<GameObject> gasCloud = getGameObjectsByType(ObjectTypes.GASCLOUD)
+            .stream().sorted(Comparator
+                .comparing(x-> getDistanceToBot(x)))
+            .collect(Collectors.toList());
+        return gasCloud;
+    }
+
+    private double distanceToGasCloud(){
+        if (getGasCloud().isEmpty()){
+            return -99;
+        } else {
+            return getDistanceToBot(getGasCloud().get(0));
+        }
+    }
+
+    private int getHeadingToGasCloud(){
+        if (getGasCloud().isEmpty()){
+            return 0;
+        } else {
+            return getHeadingBetween(getGasCloud().get(0));
+        }
+    }
+
+
+    private boolean isSuperFoodActive(){
+        if ((bot.getEffect()>=8 && bot.getEffect()<16)){
+            return true;
+        } else if (bot.getEffect()>=24){
+            if (bot.getEffect()-16 >= 8 && bot.getEffect()-16<16){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     /* GATHER FOOD */
 
-    private PlayerAction getClosestFood(){
+    private PlayerAction goToClosestFood(){
         PlayerAction playerAction = new PlayerAction();
         List<GameObject> food = getGameObjectsByType(ObjectTypes.FOOD)
             .stream().sorted(Comparator
@@ -100,9 +143,9 @@ public class GatherFood extends BotState{
                 .comparing(x -> getDistanceToBot(x)))
             .collect(Collectors.toList());
 
-        if (!food.isEmpty()){ //superfood lebih diutamakan
+        if (!food.isEmpty()){ //superfood lebih diutamakan kalau tidak aktif
             if (!superFood.isEmpty()){
-                if (getDistanceToBot(food.get(0)) >= 0.75*getDistanceToBot(superFood.get(0))){
+                if (getDistanceToBot(food.get(0)) >= 0.75*getDistanceToBot(superFood.get(0))&& !isSuperFoodActive()){
                     playerAction.action = PlayerActions.FORWARD;
                     playerAction.heading = getHeadingBetween(superFood.get(0));
                 } else {
@@ -122,14 +165,21 @@ public class GatherFood extends BotState{
     private PlayerAction goToNewArea(){
         PlayerAction playerAction = new PlayerAction();
         playerAction.action = PlayerActions.FORWARD;
-        playerAction.heading = foodHeatMap(FAR_DISTANCE);
+        playerAction.heading = foodHeatMap(FAR_DISTANCE + bot.getSize());
         return playerAction;
     }
 
-    private PlayerAction dodgeGCnBoundary(){
+    private PlayerAction dodgeBoundary(){
         PlayerAction playerAction = new PlayerAction();
         playerAction.action = PlayerActions.FORWARD;
         playerAction.heading = getHeading(gameState.getWorld().getCenterPoint());
+        return playerAction;
+    }
+
+    private PlayerAction dodgeGasCloud(){
+        PlayerAction playerAction = new PlayerAction();
+        playerAction.action = PlayerActions.FORWARD;
+        playerAction.heading = (getHeadingToGasCloud()+180)%360;
         return playerAction;
     }
 

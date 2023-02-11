@@ -64,6 +64,10 @@ public class GameObject {
     this.position = position;
   }
 
+  public Integer getEffect(){
+    return effect;
+  }
+
   public ObjectTypes getGameObjectType() {
     return gameObjectType;
   }

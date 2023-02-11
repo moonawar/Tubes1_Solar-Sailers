@@ -23,7 +23,11 @@ public class BotBrain {
     /* State Machine */
     // * WAITING TO BE IMPLEMENTED *
     private static BotState GatherFood = new GatherFood();
+<<<<<<< HEAD
     //private static BotState Defend = new DefendState();
+=======
+    private static BotState Defend = new DefendState();
+>>>>>>> e2d2903a94127016cd959143fe7347122306566c
     private static BotState TorpedoAttack = new TorpedoAttack();
     private static BotState FireTeleport = new FireTeleport();
     private static BotState Teleport = new Teleport();
@@ -33,7 +37,13 @@ public class BotBrain {
 
     // private BotState[] states = {GatherFood, Defend, TorpedoAttack, FireTeleport, Teleport, GetPowerup, FireNova, DetonateNova};
     // private static BotState[] states = {Defend};
+<<<<<<< HEAD
     private static BotState[] states = {TorpedoAttack, GatherFood, FireTeleport, Teleport};
+=======
+    // private static BotState[] states = {TorpedoAttack};
+    private static BotState[] states = {GatherFood};
+
+>>>>>>> e2d2903a94127016cd959143fe7347122306566c
 
     public static PlayerAction GetBotAction(){
         // *Waiting for states to be implemented*
