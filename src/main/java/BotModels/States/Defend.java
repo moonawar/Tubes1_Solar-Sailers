@@ -7,7 +7,7 @@ import Models.*;
 import java.util.*;
 import java.util.stream.*;
 
-public class DefendState extends BotState{
+public class Defend extends BotState{
     /* Parameters for priority score
      * 1. Banyaknya musuh yang lebih besar
      * 2. Banyaknya torpedo yang mengarah ke ship
@@ -25,13 +25,12 @@ public class DefendState extends BotState{
     private final int VERY_CLOSE_DISTANCE = 50;
     private final int CLOSE_DISTANCE = 100;
     private final int MEDIUM_DISTANCE = 200;
-    private final int FAR_DISTANCE = 400;
-    private final int VERY_FAR_DISTANCE = 600;
     
     private final int DISTANCE_TO_TOLERANCE_RATIO = 10;
 
     /* ABSTRACT METHOD */
     public float calculatePriorityScore() {
+        // Count the priority score of the state
         int biggerEnemyCount = getBiggerEnemiesInRange(MEDIUM_DISTANCE).size();
         int torpedoCount = getTorpedosInRange(MEDIUM_DISTANCE).size();
         int teleportProjectileCount = getTeleporterInRange(MEDIUM_DISTANCE).size();
