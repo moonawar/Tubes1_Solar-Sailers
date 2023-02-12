@@ -105,10 +105,11 @@ public class Defend extends BotState{
 
         int speed = bot.getSpeed();
 
-        double priority = 
-            torpedoCountVeryClose * 0.8 + 
-            torpedoCountClose * 0.3 - 
-            speed * 0.002;
+        double priority =
+            bot.shieldCount * 
+            (torpedoCountVeryClose * 80 + 
+            torpedoCountClose * 30 - 
+            speed * 2);
             
         return priority;
     }
@@ -166,7 +167,7 @@ public class Defend extends BotState{
         if (closestEnemy == null) {
             playerAction.heading = bot.currentHeading;
         } else {
-            playerAction.heading =  (getHeadingBetween(closestEnemy) + 180) % 360;
+            playerAction.heading =  (getHeadingBetween(closestEnemy) + 135) % 360;
         }
         return playerAction;
     }
