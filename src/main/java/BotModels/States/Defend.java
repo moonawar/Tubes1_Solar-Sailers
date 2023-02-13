@@ -64,7 +64,7 @@ public class Defend extends BotState{
     /* HELPER METHODS */
     private List<GameObject> getBiggerEnemiesInRange(int distance) {
         // Mengembalikan list musuh yang lebih besar dari ship yang berada di area sekitar ship (MEDIUM DISTANCE)
-        List<GameObject> biggerEnemies = getGameObjectsByType(getGameObjectsAtBotArea(distance), ObjectTypes.PLAYER)
+        List<GameObject> biggerEnemies = getPlayersAtArea(bot.getPosition(), distance)
             .stream().filter(x -> x.getId() != bot.getId() && x.getSize() > bot.getSize())
             .collect(Collectors.toList()); 
         return biggerEnemies;
