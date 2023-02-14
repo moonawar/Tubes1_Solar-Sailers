@@ -104,6 +104,8 @@ public class FireTeleport extends BotState{
         playerAction.action = PlayerActions.FIRETELEPORT;
         playerAction.heading = heading;
         bot.teleporterAngle = heading;
+
+        teleporterFired = true; // BotState attribute
         return playerAction;
     }
 }

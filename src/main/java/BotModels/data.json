@@ -1,0 +1,42 @@
+{
+    "GatherFood":{
+        "params":{
+
+        },
+        "distance":{
+
+        }
+    },
+    "Defend":{
+        "params":{
+
+        },
+        "distance":{
+            
+        }
+    },
+    "FireTeleport":{
+        "params":{
+
+        },
+        "distance":{
+            
+        }
+    },
+    "Teleport":{
+        "params":{
+
+        },
+        "distance":{
+            
+        }
+    },
+    "TorpedoAttack":{
+        "params":{
+
+        },
+        "distance":{
+            
+        }
+    }
+}
