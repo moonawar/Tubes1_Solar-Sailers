@@ -8,18 +8,24 @@ import Models.*;
 import java.util.*;
 import java.util.stream.*;
 
-public class GatherFood extends BotState{
+import org.json.simple.JSONObject;
 
-    private final int VERY_CLOSE_DISTANCE = 32;
-    private final int CLOSE_DISTANCE = 50;
-    private final int MEDIUM_DISTANCE =150;
-    private final int FAR_DISTANCE =  200;
-    private final int VERY_FAR_DISTANCE =400;
+public class GatherFood extends BotState{
+    /* Data Gathering */
+    private JSONObject data = new DataParser().getGatherFoodData();
+    private JSONObject distances = (JSONObject) data.get("distances");
+    private JSONObject params = (JSONObject) data.get("params");
+    
+    /* Constants */
+    private final int VERY_CLOSE_DISTANCE = (int) distances.get("veryClose");
+    private final int CLOSE_DISTANCE = (int) distances.get("close");
+    private final int FAR_DISTANCE =  (int) distances.get("far");
+
+    private final float BASE_SCORE = (float) params.get("base");
 
     /* ABSTRACT METHOD */
     public float calculatePriorityScore() {
-        //belum
-        return 10;
+        return BASE_SCORE;
     }
 
     public PlayerAction calculatePlayerAction(){
@@ -182,6 +188,5 @@ public class GatherFood extends BotState{
         playerAction.heading = (getHeadingToGasCloud()+180)%360;
         return playerAction;
     }
-
-    /* GATHER FOOD */
+    
 }

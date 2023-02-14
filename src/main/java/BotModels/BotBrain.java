@@ -22,12 +22,13 @@ public class BotBrain {
 
     /* State Machine */
     private static BotState GatherFood = new GatherFood();
-    private static BotState Defend = new Defend();
+    private static BotState UseShield = new UseShield();
+    private static BotState Run = new Run();
     private static BotState TorpedoAttack = new TorpedoAttack();
     private static BotState FireTeleport = new FireTeleport();
     private static BotState Teleport = new Teleport();
 
-    private static BotState[] states = {GatherFood, Defend, TorpedoAttack, FireTeleport, Teleport};
+    private static BotState[] states = {GatherFood, UseShield, Run, TorpedoAttack, FireTeleport, Teleport};
     public static PlayerAction GetBotAction(){
         // Return : Action that will be executed by the bot based on the best state
         currentState = GetBestState();

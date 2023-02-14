@@ -1,17 +1,19 @@
 {
     "GatherFood":{
         "params":{
-
+            "base" : 100
         },
-        "distance":{
-
+        "distances":{
+            "veryClose": 32,
+            "close": 50,
+            "far": 200
         }
     },
     "Defend":{
         "params":{
 
         },
-        "distance":{
+        "distances":{
             
         }
     },
@@ -19,7 +21,7 @@
         "params":{
 
         },
-        "distance":{
+        "distances":{
             
         }
     },
@@ -27,7 +29,7 @@
         "params":{
 
         },
-        "distance":{
+        "distances":{
             
         }
     },
@@ -35,7 +37,7 @@
         "params":{
 
         },
-        "distance":{
+        "distances":{
             
         }
     }
