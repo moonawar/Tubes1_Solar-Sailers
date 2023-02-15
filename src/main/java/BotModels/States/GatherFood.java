@@ -156,17 +156,17 @@ public class GatherFood extends BotState{
         PlayerAction playerAction = new PlayerAction();
         List<GameObject> food = getGameObjectsByType(ObjectTypes.FOOD)
             .stream().sorted(Comparator
-                .comparing(x -> getDistanceToBot(x)))
+                .comparing(x -> getDistanceToBotWithHeading(x)))
             .collect(Collectors.toList());
 
         List<GameObject> superFood = getGameObjectsByType(ObjectTypes.SUPERFOOD)
             .stream().sorted(Comparator
-                .comparing(x -> getDistanceToBot(x)))
+                .comparing(x -> getDistanceToBotWithHeading(x)))
             .collect(Collectors.toList());
 
         if (!food.isEmpty()){ //superfood lebih diutamakan kalau tidak aktif
             if (!superFood.isEmpty()){
-                if (getDistanceToBot(food.get(0)) >= 0.75 * getDistanceToBot(superFood.get(0))&& !isSuperFoodActive()){
+                if (getDistanceToBotWithHeading(food.get(0)) >= 0.75 * getDistanceToBotWithHeading(superFood.get(0)) && !isSuperFoodActive()){
                     playerAction.action = PlayerActions.FORWARD;
                     playerAction.heading = getHeadingBetween(superFood.get(0));
                 } else {
@@ -182,6 +182,21 @@ public class GatherFood extends BotState{
         }
         return playerAction;
     }
+
+    private double getDistanceToBotWithHeading(GameObject x){
+        // return : distance to the closest food considering the heading too
+        int headToFood = getHeading(x.position);
+        int botHeading = bot.getCurrHeading();
+
+        double actualDist = getDistanceToBot(x);
+    
+        if (Math.abs((headToFood - botHeading) % 360) <= 15) {
+            return actualDist;
+        } else {
+            return actualDist + 50;
+        }
+    }
+       
 
     private PlayerAction goToNewArea(){
         // return : player action to go to the quadrant with the highest density of food and superfood

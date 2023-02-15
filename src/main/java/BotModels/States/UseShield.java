@@ -17,7 +17,7 @@ public class UseShield extends BotState {
         // check if bot is in danger of torpedo heading to it
         int torpedoCount = getTorpedosInRange(CLOSE_DISTANCE + bot.getSize()).size();
 
-        float priorityScore = bot.shieldCount * torpedoCount * 50;
+        float priorityScore = bot.shieldCount * torpedoCount * 100;
         return priorityScore;
     }
 
