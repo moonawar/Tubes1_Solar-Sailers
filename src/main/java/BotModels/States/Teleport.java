@@ -37,7 +37,7 @@ public class Teleport extends BotState {
             BotState.teleporterFired = false;
             return 0;
         } else {
-            List<GameObject> targetAroundTeleporter = getPlayersAtArea(myTeleporter.get(0).position, bot.getSize() - 10).stream().
+            List<GameObject> targetAroundTeleporter = getPlayersAtArea(myTeleporter.get(0).position, bot.getSize() + 100).stream().
                 filter(e -> e.getId() != bot.getId()).collect(Collectors.toList());
             if (targetAroundTeleporter.size() == 0) {
                 // teleporter is alive but no target around
@@ -49,7 +49,14 @@ public class Teleport extends BotState {
                         return 0;
                     }
                 }
-                return 900;
+
+                for(int i = 0; i < targetAroundTeleporter.size(); i++){
+                    if (getDistanceToBot(targetAroundTeleporter.get(i)) <= bot.getSize() + 100) {
+                        return 900;
+                    }
+                }
+
+                return 0;
             }
         }
     }

@@ -53,6 +53,12 @@ public abstract class BotState {
         var direction = toDegrees(Math.atan2(position.y - bot.getPosition().y, position.x - bot.getPosition().x));
         return (direction + 360) % 360;
     }
+
+    protected int getHeading2(Position position1, Position position2) {
+        // Mengembalikan heading dari posisi 1 ke posisi 2
+        var direction = toDegrees(Math.atan2(position2.y - position1.y, position2.x - position1.x));
+        return (direction + 360) % 360;
+    }
     
     protected int getHeadingBetween(GameObject otherObject) {
         // Mengembalikan heading antara bot dan game object lain
@@ -100,23 +106,15 @@ public abstract class BotState {
         return getPlayersAtArea(bot.getPosition(), radius);
     }
 
-    protected boolean isObjectHeadingTo(GameObject obj, Position position, double distanceTolerance) {
+    protected boolean isObjectHeadingTo(GameObject obj, Position position, int degreeTolerance) {
         // Mengembalikan true jika objek tertentu mengarah ke posisi tertentu, dengan toleransi +- distanceTolerance dari posisi
         int objHeading = obj.currentHeading;
 
-        double[] objToPos = new double[] { position.x - obj.getPosition().x, position.y - obj.getPosition().y };
-        Vector2d objToPosVector = new Vector2d(objToPos);
-
-        double[] objHeading_Normal = new double[] { Math.sin(Math.toRadians(objHeading)), -1*Math.cos(Math.toRadians(objHeading))};
-        Vector2d objHeadingNormalVector = new Vector2d(objHeading_Normal);
-        
-        double distance = Math.ceil(objToPosVector.dot(objHeadingNormalVector) / objHeadingNormalVector.length());
-
-        return distance <= distanceTolerance;
+        return Math.abs((objHeading - getHeading2(obj.position, position)) % 360) <= degreeTolerance;
     }
 
-    protected boolean isObjectHeadingToBot(GameObject obj, double distanceTolerance) {
+    protected boolean isObjectHeadingToBot(GameObject obj, int degreeTolerance) {
         // Mengembalikan true jika heading bot ke game object tertentu
-        return isObjectHeadingTo(obj, bot.getPosition(), distanceTolerance);
+        return isObjectHeadingTo(obj, bot.getPosition(), degreeTolerance);
     }
 }
