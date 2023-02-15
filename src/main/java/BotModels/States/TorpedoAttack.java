@@ -13,24 +13,24 @@ public class TorpedoAttack extends BotState{
 
     /* ABSTRACT METHOD */
     public float calculatePriorityScore() {
-        if(bot.getTorpedoSalvoCount() == 0) return 0; // doesn't have torpedo salvo, don't call calculatePlayerAction
-        else{
-            if(sizeSaveToAttack() == 0) return 0; // size not safe, don't call calculatePlayerAction
-            else{
-                List<GameObject> enemyInRangeListClose = enemyInRange(CLOSE_DISTANCE);
-                if(enemyInRangeListClose.size() == 0) return 0; // doesn't have enemy close enough, don't call calculatePlayerAction
-                else{
-                    List<GameObject> enemyInRangeListVeryClose = enemyInRange(VERY_CLOSE_DISTANCE);
-                    if(enemyInRangeListVeryClose.size() == 0){
-                        double dist = getDistClosestEnemy(getObjClosestEnemy(enemyInRangeListClose));
-                        float prio = ((float) dist/CLOSE_DISTANCE * 80/100) + (sizeSaveToAttack() * 20/100);
-                        return prio;
-                    }
-                    else{
-                        double dist = getDistClosestEnemy(getObjClosestEnemy(enemyInRangeListVeryClose));
-                        float prio = ((float) dist/VERY_CLOSE_DISTANCE * 80/100) + (sizeSaveToAttack() * 20/100);
-                        return prio;
-                    }
+        if (bot.getTorpedoSalvoCount() == 0 || sizeSaveToAttack() == 0) {
+            // initial checking for torpedo
+            return 0;
+        } else {
+            List<GameObject> enemyInRangeListClose = enemyInRange(CLOSE_DISTANCE + bot.getSize());
+            if (enemyInRangeListClose.size() == 0) {
+                // no enemy in range
+                return 0;
+            } else {
+                List<GameObject> enemyInRangeListVeryClose = enemyInRange(VERY_CLOSE_DISTANCE + bot.getSize());
+                if (enemyInRangeListVeryClose.size() == 0) {
+                    double dist = getDistClosestEnemy(getObjClosestEnemy(enemyInRangeListClose));
+                    float prio = ((float) (CLOSE_DISTANCE/dist) * sizeSaveToAttack() * 120);
+                    return prio;
+                } else {
+                    double dist = getDistClosestEnemy(getObjClosestEnemy(enemyInRangeListVeryClose));
+                    float prio = ((float) (VERY_CLOSE_DISTANCE/dist) * sizeSaveToAttack() * 120);
+                    return prio;
                 }
             }
         }
@@ -53,11 +53,13 @@ public class TorpedoAttack extends BotState{
 
     /* HELPER METHOD */
     private List<GameObject> enemyInRange(int radius){
+        // return : list of enemy in range
         List<GameObject> enemyInRangeList = getPlayersAtBotArea(radius);
         return enemyInRangeList;
     }
+
     private GameObject getObjClosestEnemy(List<GameObject> enemyInRangeList){
-        // enemyInRangeList.size != 0;
+        // return : closest enemy from the list
         double mindist = LARGE_NUM, dist;
         int closestidx = 0;
         for(int i = 0; i < enemyInRangeList.size(); i++){
@@ -69,22 +71,29 @@ public class TorpedoAttack extends BotState{
         }
         return enemyInRangeList.get(closestidx);
     }
+
     private double getDistClosestEnemy(GameObject closestEnemy){
+        // return : distance to closest enemy
         return getDistanceToBot(closestEnemy);
     }
 
     private int sizeSaveToAttack(){
+        // return 0 : if bot is too small to attack, increase as bot gets bigger
         int botSize = bot.getSize();
         if(botSize < 15) return 0;
-        if(botSize < 30) return 25;
-        if(botSize < 45) return 50;
-        else return 100;
+        if(botSize < 30) return 1;
+        if(botSize < 45) return 2;
+        else return 3;
     }
 
     private PlayerAction attackTorpedo(GameObject enemy){
+        // return : torpedo attack action
         PlayerAction playerAction = new PlayerAction();
+
+        // set action
         playerAction.action = PlayerActions.FIRETORPEDOES;
-        playerAction.heading = getHeadingBetween(enemy) - 5;
+        playerAction.heading = getHeadingBetween(enemy);
+
         return playerAction;
     }
 }

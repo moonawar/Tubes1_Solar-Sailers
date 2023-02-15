@@ -15,6 +15,7 @@ public abstract class BotState {
     public static GameState gameState;
     public static GameObject bot;
     protected static boolean teleporterFired = false;
+    protected static int teleporterAngle = -1;
 
     /* ABSTRACT METHOD (MUST BE IMPLEMENTED BY EACH STATE) */
     abstract public float calculatePriorityScore();
