@@ -48,10 +48,6 @@ public class Teleport extends BotState {
                         // target is bigger than bot = DANGER, don't teleport
                         return 0;
                     }
-<<<<<<< HEAD
-                    return 300;
-=======
->>>>>>> 01ecc337be50855d4a600bae260b3c366b8a0e2b
                 }
                 return 900;
             }

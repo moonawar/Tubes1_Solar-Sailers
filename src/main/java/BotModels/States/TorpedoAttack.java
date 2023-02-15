@@ -8,8 +8,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class TorpedoAttack extends BotState{
-    private final int VERY_CLOSE_DISTANCE = 75;
-    private final int CLOSE_DISTANCE = 100;
+    private final int VERY_CLOSE_DISTANCE = 150;
+    private final int CLOSE_DISTANCE = 200;
     private final int LARGE_NUM = 1000000;
 
     /* ABSTRACT METHOD */
@@ -24,11 +24,11 @@ public class TorpedoAttack extends BotState{
             if(enemyInRangeListClose.size() == 0) return 0; // doesn't have enemy close enough, don't call calculatePlayerAction                else{
             List<GameObject> enemyInRangeListVeryClose = enemyInRange(VERY_CLOSE_DISTANCE + bot.getSize());
             if(enemyInRangeListVeryClose.size() == 0){
-                prio = (200 - getObjClosestEnemy(enemyInRangeListClose).getSize());
+                prio = (300 - getObjClosestEnemy(enemyInRangeListClose).getSize());
                 return prio;
             }
             else{
-                prio = (300 - getObjClosestEnemy(enemyInRangeListVeryClose).getSize());
+                prio = (400 - getObjClosestEnemy(enemyInRangeListVeryClose).getSize());
                 return prio;
             }
         }
@@ -72,7 +72,7 @@ public class TorpedoAttack extends BotState{
     }
 
     private boolean sizeSaveToAttack(){
-        return (bot.getSize() > 15);
+        return (bot.getSize() >= 25);
     }
 
     private PlayerAction attackTorpedo(GameObject enemy){
