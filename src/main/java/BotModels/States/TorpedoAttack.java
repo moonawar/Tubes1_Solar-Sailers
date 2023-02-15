@@ -14,35 +14,24 @@ public class TorpedoAttack extends BotState{
 
     /* ABSTRACT METHOD */
     public float calculatePriorityScore() {
-        System.out.println("torpedo");
-        System.out.println(bot.getTorpedoSalvoCount());
-        System.out.println("size");
-        System.out.println(bot.getSize());
         int prio;
-        if(bot.getTorpedoSalvoCount() == 0) prio = 0; // doesn't have torpedo salvo, don't call calculatePlayerAction
+        if (bot.getTorpedoSalvoCount() == 0 || sizeSaveToAttack() == false) {
+            // initial checking for torpedo
+            return 0;
+        } 
         else{
-            if(sizeSaveToAttack() == false) prio = 0; // size not safe, don't call calculatePlayerAction
+            List<GameObject> enemyInRangeListClose = enemyInRange(CLOSE_DISTANCE + bot.getSize());
+            if(enemyInRangeListClose.size() == 0) return 0; // doesn't have enemy close enough, don't call calculatePlayerAction                else{
+            List<GameObject> enemyInRangeListVeryClose = enemyInRange(VERY_CLOSE_DISTANCE + bot.getSize());
+            if(enemyInRangeListVeryClose.size() == 0){
+                prio = (200 - getObjClosestEnemy(enemyInRangeListClose).getSize());
+                return prio;
+            }
             else{
-                List<GameObject> enemyInRangeListClose = enemyInRange(CLOSE_DISTANCE + bot.getSize());
-                System.out.println("listsize");
-                System.out.println(enemyInRangeListClose.size());
-                if(enemyInRangeListClose.size() == 0) prio = 0; // doesn't have enemy close enough, don't call calculatePlayerAction
-                else{
-                    List<GameObject> enemyInRangeListVeryClose = enemyInRange(VERY_CLOSE_DISTANCE + bot.getSize());
-                    if(enemyInRangeListVeryClose.size() == 0){
-                        prio = (200 - getObjClosestEnemy(enemyInRangeListClose).getSize());
-                        return prio;
-                    }
-                    else{
-                        prio = (300 - getObjClosestEnemy(enemyInRangeListVeryClose).getSize());
-                        return prio;
-                    }
-                }
+                prio = (300 - getObjClosestEnemy(enemyInRangeListVeryClose).getSize());
+                return prio;
             }
         }
-        System.out.println("prio");
-        System.out.println(prio);
-        return prio;
     }
 
     public PlayerAction calculatePlayerAction(){
@@ -67,8 +56,9 @@ public class TorpedoAttack extends BotState{
         .collect(Collectors.toList());
         return enemyInRangeList;
     }
+
     private GameObject getObjClosestEnemy(List<GameObject> enemyInRangeList){
-        // enemyInRangeList.size != 0;
+        // return : closest enemy from the list
         double mindist = LARGE_NUM, dist;
         int closestidx = 0;
         for(int i = 0; i < enemyInRangeList.size(); i++){
@@ -86,7 +76,10 @@ public class TorpedoAttack extends BotState{
     }
 
     private PlayerAction attackTorpedo(GameObject enemy){
+        // return : torpedo attack action
         PlayerAction playerAction = new PlayerAction();
+
+        // set action
         playerAction.action = PlayerActions.FIRETORPEDOES;
         playerAction.heading = getHeadingBetween(enemy);
         return playerAction;

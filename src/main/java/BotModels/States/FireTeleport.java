@@ -12,32 +12,24 @@ public class FireTeleport extends BotState{
 
     /* ABSTRACT METHOD */
     public float calculatePriorityScore(){
-        if(bot.getTeleporterAngle() != -1) return 0;
-        else{
-            if(bot.getTeleporterCount() == 0) return 0;
-            else{
-                if(sizeSaveToFire() == 0) return 0;
-                else{
-                    List<GameObject> enemySmallList = enemySmall();
-                    if(enemySmallList.size() == 0) return 0;
-                    else{
-                        return sizeSaveToFire();
-                    }
-                }
-            }
+        if (BotState.teleporterFired == true || bot.getTeleporterCount() == 0) {
+            // initial checking for teleporter
+            return 0;
+        } else {
+            return sizeSaveToFire();
         }
     }
 
     public PlayerAction calculatePlayerAction(){
         List<GameObject> enemySmallList = enemySmall();
         if(enemySmallList.size() != 0){
+            // get the smallest enemy to be targeted
             GameObject target = enemySmallest(enemySmallList);
             return fireTeleport(target);
-        }
-        else{
+        } else {
             PlayerAction playerAction = new PlayerAction();
             playerAction.action = PlayerActions.STOP;
-            playerAction.heading = 0;
+            playerAction.heading = bot.getCurrHeading();
             return playerAction;
         }   
     }
@@ -90,22 +82,35 @@ public class FireTeleport extends BotState{
         return heading + offset;
     }
 
-    private int sizeSaveToFire(){
+    private float sizeSaveToFire(){
         int botSize = bot.getSize();
-        if(botSize <= 20) return 0;
-        if(botSize < 30) return 100;
-        if(botSize < 45) return 150;
-        else return 200;
+        List<GameObject> enemySmallList = enemySmall();
+
+        // check if there is any smaller enemy in the first place
+        if(enemySmallList.size() == 0){
+            return 0;
+        } else {
+            GameObject smallestEnemy = enemySmallest(enemySmallList);
+            int smallestEnemySize = smallestEnemy.getSize();
+
+            return (botSize/smallestEnemySize) * 250 * (float) (250/getDistanceToBot(smallestEnemy));
+        }
     }
 
     private PlayerAction fireTeleport(GameObject target){
         PlayerAction playerAction = new PlayerAction();
-        int heading = calcHeadingOffset(target);
-        playerAction.action = PlayerActions.FIRETELEPORT;
-        playerAction.heading = heading;
-        bot.teleporterAngle = heading;
+        
+        // calc the heading offset
+        int shootDirection = calcHeadingOffset(target);
 
-        teleporterFired = true; // BotState attribute
+        // set the player action
+        playerAction.action = PlayerActions.FIRETELEPORT;
+        playerAction.heading = shootDirection;
+
+        // set the bot state
+        BotState.teleporterAngle = shootDirection;
+        BotState.teleporterFired = true;
+
         return playerAction;
     }
 }

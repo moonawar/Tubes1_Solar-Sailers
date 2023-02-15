@@ -11,43 +11,64 @@ public class Teleport extends BotState {
 
     /* ABSTRACT METHODS */
     public float calculatePriorityScore(){
-        if(bot.teleporterAngle == -1) return 0;
-        else return decideTeleport();
-    }
-    public PlayerAction calculatePlayerAction(){
-        if(bot.getTeleporterCount() != 0) return teleport();
-        else{
-            PlayerAction playerAction = new PlayerAction();
-            playerAction.action = PlayerActions.STOP;
-            playerAction.heading = 0;
-            return playerAction;
+        if(BotState.teleporterFired == false) {
+            // no teleporter fired
+            return 0;
         }
+        else {
+            return decideTeleportScore();
+        } 
+    }
+
+    public PlayerAction calculatePlayerAction(){
+        // teleport
+        return teleport();
     }
 
     /* HELPER METHODS */
-    private int decideTeleport(){
-        int angle = bot.getTeleporterAngle();
-        if(angle == -1) return 0;
-        else{
-            List<GameObject> myTeleporter = gameState.getGameObjects().stream().filter(item -> item.getGameObjectType() == ObjectTypes.TELEPORTER && item.getCurrHeading() == angle).collect(Collectors.toList());
-            if(myTeleporter.size() == 0) return 0;
-            else{
-                List<GameObject> targetAroundTeleporter = getGameObjectsAtArea(myTeleporter.get(0).position, bot.getSize());
-                if(targetAroundTeleporter.size() == 0) return 0;
-                else{
-                    for(int i = 0; i < targetAroundTeleporter.size(); i++){
-                        if(targetAroundTeleporter.get(i).getSize() >= bot.getSize()) return 0;
+    private int decideTeleportScore(){
+        // check if bot's teleporter is still alive
+        List<GameObject> myTeleporter = 
+            getGameObjectsByType(ObjectTypes.TELEPORTER).stream().
+            filter(item -> item.getCurrHeading() == BotState.teleporterAngle).collect(Collectors.toList());
+
+        if (myTeleporter.size() == 0) {
+            // teleporter is dead
+            BotState.teleporterFired = false;
+            return 0;
+        } else {
+            List<GameObject> targetAroundTeleporter = getPlayersAtArea(myTeleporter.get(0).position, bot.getSize()).stream().
+                filter(e -> e.getId() != bot.getId()).collect(Collectors.toList());
+            if (targetAroundTeleporter.size() == 0) {
+                // teleporter is alive but no target around
+                return 0;
+            } else {
+                for(int i = 0; i < targetAroundTeleporter.size(); i++){
+                    if (targetAroundTeleporter.get(i).getSize() >= bot.getSize()) {
+                        // target is bigger than bot = DANGER, don't teleport
+                        return 0;
                     }
+<<<<<<< HEAD
                     return 300;
+=======
+>>>>>>> 01ecc337be50855d4a600bae260b3c366b8a0e2b
                 }
+                return 900;
             }
         }
     }
 
     private PlayerAction teleport(){
         PlayerAction playerAction = new PlayerAction();
+
+        // set action to teleport
         playerAction.action = PlayerActions.TELEPORT;
-        bot.setTeleporterAngle(-1);
+        playerAction.heading = bot.getCurrHeading();
+
+        // reset teleporter
+        BotState.teleporterAngle = -1;
+        BotState.teleporterFired = false;
+
         return playerAction;
     }
 }

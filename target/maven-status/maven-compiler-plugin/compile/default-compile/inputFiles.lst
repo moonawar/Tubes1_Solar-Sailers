@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/BotState.java
 /Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Models/GameStateDto.java
 /Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Enums/ObjectTypes.java
@@ -16,3 +17,23 @@
 /Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Models/Position.java
 /Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/States/Teleport.java
 /Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Main.java
+=======
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\FireTeleport.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Enums\PlayerActions.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\Teleport.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Enums\ObjectTypes.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Services\BotService.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Models\PlayerAction.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\TorpedoAttack.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Models\GameObject.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\Run.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Main.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\UseShield.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Models\GameStateDto.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Models\Position.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Models\GameState.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\BotBrain.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\GatherFood.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Models\World.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\BotState.java
+>>>>>>> 01ecc337be50855d4a600bae260b3c366b8a0e2b
