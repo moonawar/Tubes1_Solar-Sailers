@@ -93,9 +93,9 @@ public class FireTeleport extends BotState{
     private int sizeSaveToFire(){
         int botSize = bot.getSize();
         if(botSize <= 20) return 0;
-        if(botSize < 30) return 25;
-        if(botSize < 45) return 50;
-        else return 75;
+        if(botSize < 30) return 100;
+        if(botSize < 45) return 150;
+        else return 200;
     }
 
     private PlayerAction fireTeleport(GameObject target){

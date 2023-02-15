@@ -38,7 +38,7 @@ public class Teleport extends BotState {
                     for(int i = 0; i < targetAroundTeleporter.size(); i++){
                         if(targetAroundTeleporter.get(i).getSize() >= bot.getSize()) return 0;
                     }
-                    return 100;
+                    return 300;
                 }
             }
         }

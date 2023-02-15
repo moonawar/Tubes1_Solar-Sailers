@@ -18,8 +18,7 @@ public class GatherFood extends BotState{
 
     /* ABSTRACT METHOD */
     public float calculatePriorityScore() {
-        //belum
-        return 10;
+        return 75;
     }
 
     public PlayerAction calculatePlayerAction(){

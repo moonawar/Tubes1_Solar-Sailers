@@ -7,11 +7,12 @@ Services/BotService.class
 BotModels/BotBrain.class
 Models/Position.class
 Main.class
-BotModels/States/DefendState.class
+BotModels/States/Defend.class
 Enums/PlayerActions.class
 BotModels/States/FireTeleport.class
 BotModels/States/GatherFood.class
 Models/GameStateDto.class
 Models/GameState.class
+BotModels/DataParser.class
 BotModels/States/TorpedoAttack.class
 Enums/ObjectTypes.class

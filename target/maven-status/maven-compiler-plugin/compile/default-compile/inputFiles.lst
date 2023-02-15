@@ -1,9 +1,10 @@
 /Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/BotState.java
 /Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Models/GameStateDto.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/States/DefendState.java
 /Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Enums/ObjectTypes.java
+/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/States/Defend.java
 /Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Enums/PlayerActions.java
 /Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Services/BotService.java
+/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/DataParser.java
 /Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/States/FireTeleport.java
 /Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Models/World.java
 /Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Models/GameState.java
