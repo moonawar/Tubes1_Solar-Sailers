@@ -32,6 +32,7 @@ public class BotBrain {
     public static PlayerAction GetBotAction(){
         // Return : Action that will be executed by the bot based on the best state
         currentState = GetBestState();
+        System.out.println("State : " + currentState.toString());
 
         currentPlayerAction = currentState.GetPlayerAction();
         return currentPlayerAction;

@@ -37,7 +37,7 @@ public class Teleport extends BotState {
             BotState.teleporterFired = false;
             return 0;
         } else {
-            List<GameObject> targetAroundTeleporter = getPlayersAtArea(myTeleporter.get(0).position, bot.getSize()).stream().
+            List<GameObject> targetAroundTeleporter = getPlayersAtArea(myTeleporter.get(0).position, bot.getSize() + 20).stream().
                 filter(e -> e.getId() != bot.getId()).collect(Collectors.toList());
             if (targetAroundTeleporter.size() == 0) {
                 // teleporter is alive but no target around

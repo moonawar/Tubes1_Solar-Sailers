@@ -8,7 +8,7 @@ import java.util.*;
 
 public class TorpedoAttack extends BotState{
     private final int VERY_CLOSE_DISTANCE = 50;
-    private final int CLOSE_DISTANCE = 75;
+    private final int CLOSE_DISTANCE = 150;
     private final int LARGE_NUM = 1000000;
 
     /* ABSTRACT METHOD */
@@ -24,12 +24,14 @@ public class TorpedoAttack extends BotState{
             } else {
                 List<GameObject> enemyInRangeListVeryClose = enemyInRange(VERY_CLOSE_DISTANCE + bot.getSize());
                 if (enemyInRangeListVeryClose.size() == 0) {
-                    double dist = getDistClosestEnemy(getObjClosestEnemy(enemyInRangeListClose));
-                    float prio = ((float) (CLOSE_DISTANCE/dist) * sizeSaveToAttack() * 120);
+                    GameObject closestEnemy = getObjClosestEnemy(enemyInRangeListClose);
+                    double dist = getDistClosestEnemy(closestEnemy);
+                    float prio = ((float) (CLOSE_DISTANCE/(dist - closestEnemy.getSize())) * sizeSaveToAttack() * 200);
                     return prio;
                 } else {
+                    GameObject closestEnemy = getObjClosestEnemy(enemyInRangeListVeryClose);
                     double dist = getDistClosestEnemy(getObjClosestEnemy(enemyInRangeListVeryClose));
-                    float prio = ((float) (VERY_CLOSE_DISTANCE/dist) * sizeSaveToAttack() * 120);
+                    float prio = ((float) (VERY_CLOSE_DISTANCE/(dist - closestEnemy.getSize())) * sizeSaveToAttack() * 200);
                     return prio;
                 }
             }
@@ -38,7 +40,7 @@ public class TorpedoAttack extends BotState{
 
     public PlayerAction calculatePlayerAction(){
         // bot.getTorpedoSalvoCount() != 0
-        List<GameObject> enemyInRangeList = enemyInRange(CLOSE_DISTANCE);
+        List<GameObject> enemyInRangeList = enemyInRange(bot.getSize() + CLOSE_DISTANCE);
         if(enemyInRangeList.size() != 0){
             GameObject enemy = getObjClosestEnemy(enemyInRangeList);
             return attackTorpedo(enemy);

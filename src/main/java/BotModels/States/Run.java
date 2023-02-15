@@ -12,7 +12,7 @@ public class Run extends BotState{
     private final int MEDIUM_DISTANCE = 150;    
     private final int DISTANCE_TO_TOLERANCE_RATIO = 10;
 
-    private final int RUN_ANGLE = 135;
+    private final int RUN_ANGLE = 180;
 
     /* ABSTRACT METHOD */
     public float calculatePriorityScore() {

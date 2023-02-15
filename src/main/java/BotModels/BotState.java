@@ -87,7 +87,7 @@ public abstract class BotState {
     protected List<GameObject> getPlayersAtArea(Position position, int radius) {
         // Mengembalikan list game object yang berada di area radius dari posisi tertentu
         return gameState.getPlayerGameObjects().stream()
-                .filter(item -> getDistance(position, item.getPosition()) <= radius && item.getId() != bot.getId()).collect(Collectors.toList());
+                .filter(item -> getDistance(position, item.getPosition()) <= radius + item.getSize() + bot.getSize() && item.getId() != bot.getId()).collect(Collectors.toList());
     }
 
     protected List<GameObject> getGameObjectsAtBotArea(int radius) {
