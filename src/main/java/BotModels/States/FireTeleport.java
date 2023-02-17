@@ -12,7 +12,7 @@ public class FireTeleport extends BotState{
 
     /* ABSTRACT METHOD */
     public float calculatePriorityScore(){
-        if (BotState.teleporterFired == true || bot.getTeleporterCount() == 0 || BotState.teleporterAngle == -1) {
+        if (BotState.teleporterFired == true || bot.getTeleporterCount() == 0 || BotState.teleporterAngle != -1) {
             // initial checking for teleporter
             return 0;
         } else {
