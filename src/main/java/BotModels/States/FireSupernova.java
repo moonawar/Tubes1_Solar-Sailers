@@ -11,7 +11,7 @@ import java.util.stream.*;
 public class FireSupernova extends BotState{
      /* ABSTRACT METHOD */
      public float calculatePriorityScore() {
-        // System.out.println("fire supernova = " + BotState.supernovaFired);
+        // Implementasi perhitungan skor prioritas untuk state FireSupernova
         if (bot.getSupernovaCount()==1){
             return 1000;
         }
@@ -19,6 +19,7 @@ public class FireSupernova extends BotState{
     }
     
     public PlayerAction calculatePlayerAction(){
+        //Implementasi pemilihan aksi bot untuk state FireSupernova
         PlayerAction playerAction = new PlayerAction();
         playerAction = fireSupernova();
         return playerAction;
@@ -26,6 +27,7 @@ public class FireSupernova extends BotState{
 
     /* HELPER METHODS */
     private int getTargetHeading(){
+        //Mengembalikan heading pada musuh yang paling besar
         List <GameObject> enemy = gameState.getPlayerGameObjects()
             .stream().filter(y-> y.getId() != bot.getId()).sorted(Comparator.comparing(x-> x.getSize()))
             .collect(Collectors.toList());
@@ -36,6 +38,7 @@ public class FireSupernova extends BotState{
 
     /* FIRE SUPERNOVA */
     private PlayerAction fireSupernova(){
+        //Mengembalikan aksi FIRESUPERNOVA dengan heading mengarah ke musuh yang memiliki ukuran paling besar
         PlayerAction playerAction = new PlayerAction();
         playerAction.action = PlayerActions.FIRESUPERNOVA;
         playerAction.heading = getTargetHeading();

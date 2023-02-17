@@ -10,9 +10,9 @@ import java.util.stream.*;
 public class  DetonateSupernova extends BotState{
      /* ABSTRACT METHOD */
      public float calculatePriorityScore() {
+        // Implementasi perhitungan skor prioritas untuk state DetonateSupernova
         if (isBombExist() && BotState.supernovaFired ){
-            // System.out.println("bomb exist");
-            // if (bot.supernovaBomb == 1){
+
             if (isReadytoDetonate()){
                 return 2000;
             } else if (distanceSupernovaToBoundary()<=50){
@@ -21,12 +21,13 @@ public class  DetonateSupernova extends BotState{
                 return 0;
             }
         } else {
-            // System.out.println("bomb doesnt exist");
+         
             return 0;
         }
     }
     
     public PlayerAction calculatePlayerAction(){
+        // Implementasi pemilihan aksi bot untuk state DetonateSupernova
         PlayerAction playerAction = new PlayerAction();
         playerAction = detonateSupernova();
         return playerAction;
@@ -34,9 +35,12 @@ public class  DetonateSupernova extends BotState{
 
     /* HELPER METHHOD */
     private boolean isBombExist(){
+        // Mengembalikan true apabila terdapat supernova bomb pada world
         return !getGameObjectsByType(ObjectTypes.SUPERNOVABOMB).isEmpty();
     }
+
     private boolean isReadytoDetonate(){
+        // Mengembalikan true apabila supernova telah sampai pada musuh dengan ukuran terbesar dan berada pada jarak yang jauh dari bot
         GameObject supernovaBomb = getGameObjectsByType(ObjectTypes.SUPERNOVABOMB).get(0);
         List <GameObject> enemy = gameState.getPlayerGameObjects()
             .stream().filter(y-> y.getId() != bot.getId()).sorted(Comparator.comparing(x-> x.getSize()))
@@ -50,11 +54,13 @@ public class  DetonateSupernova extends BotState{
     }
 
     private double distanceSupernovaToBoundary(){
+        // Mengembalikan jarak supernovabomb ke boundary
         GameObject supernovaBomb = getGameObjectsByType(ObjectTypes.SUPERNOVABOMB).get(0);
         return gameState.getWorld().getRadius()-getDistance(gameState.getWorld().getCenterPoint(), supernovaBomb.getPosition());
     }
 
     private PlayerAction detonateSupernova(){
+        // Mengembalikan aksi DETONATESUPERNOVA apabila supernova bomb telah sampai pada sasaran dan berada pada jarak tertentu dari bot
         PlayerAction playerAction = new PlayerAction();
         playerAction.action = PlayerActions.DETONATESUPERNOVA;
         playerAction.heading = 0;
