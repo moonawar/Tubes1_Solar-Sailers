@@ -53,8 +53,12 @@ Each priority score calculated individually in each corresponding  state.
 * Windows: https://dotnet.microsoft.com/download/dotnet/thank-you/sdk-3.1.407-windows-x64-installer
 * Linux: https://docs.microsoft.com/en-us/dotnet/core/install/linux
 * MacOS: https://dotnet.microsoft.com/download/dotnet/thank-you/sdk-3.1.407-macos-x64-installer
-3. Java
+3. Java (minimum of Java 11)
 * https://www.oracle.com/id/java/technologies/downloads/
+4. IntelIiJ IDEA
+* https://www.jetbrains.com/idea/
+5. NodeJS
+* https://nodejs.org/en/download/
 
 ## Get Started
 
