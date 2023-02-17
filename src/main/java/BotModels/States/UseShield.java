@@ -23,7 +23,7 @@ public class UseShield extends BotState {
             return 0;
         }
 
-        float priorityScore = torpedoCount * 80;
+        float priorityScore = bot.shieldCount * torpedoCount * 45;
         return priorityScore;
     }
 
