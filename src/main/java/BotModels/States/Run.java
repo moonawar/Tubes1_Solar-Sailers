@@ -62,10 +62,10 @@ public class Run extends BotState{
             playerAction.heading = (getHeadingBetween(closestEnemy) + RUN_ANGLE) % 360;
         } else if (closestTeleportProjectile != null) {
             // run away from teleporter projectile
-            playerAction.heading = (getHeadingBetween(closestTeleportProjectile) + RUN_ANGLE) % 360;
+            playerAction.heading = (getHeadingBetween(closestTeleportProjectile) + RUN_ANGLE - 90) % 360;
         } else if (closestSupernovaProjectile != null) {
             // run away from supernova projectile
-            playerAction.heading = (getHeadingBetween(closestSupernovaProjectile) + RUN_ANGLE) % 360;
+            playerAction.heading = (getHeadingBetween(closestSupernovaProjectile) + RUN_ANGLE - 90) % 360;
         } else {
             playerAction.heading =  bot.getCurrHeading();
         }

@@ -14,8 +14,12 @@ public class UseShield extends BotState {
     /* ABSTRACT METHOD */
     public float calculatePriorityScore() {
         // check if bot is in danger of torpedo heading to it
+        if (bot.getSize() < 30 || bot.getEffect() >= 16) {
+            return 0;
+        }
+        
         int torpedoCount = getTorpedosInRange(CLOSE_DISTANCE + bot.getSize()).size();
-
+        
         float priorityScore = bot.shieldCount * torpedoCount * 40;
         return priorityScore;
     }
@@ -35,7 +39,7 @@ public class UseShield extends BotState {
     private List<GameObject> getTorpedosInRange(int distance) {
         // return : list of torpedo that is heading to the bot
         List<GameObject> torpedoes = getGameObjectsByType(getGameObjectsAtBotArea(distance), ObjectTypes.TORPEDOSALVO).
-            stream().collect(Collectors.toList());
+            stream().filter(x -> isObjectHeadingToBot(x, 10)).collect(Collectors.toList());
         return torpedoes;
     }
    
