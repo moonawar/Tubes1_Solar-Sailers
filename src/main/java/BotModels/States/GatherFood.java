@@ -52,7 +52,7 @@ public class GatherFood extends BotState{
         }
 
         // obstacle avoidance
-        if (!getGasCloud().isEmpty() &&  bot.getSize() + 0 < distanceToGasCloud() + getGasCloud().get(0).getSize()){
+        if (!getGasCloud().isEmpty() &&  bot.getSize() > distanceToGasCloud() + getGasCloud().get(0).getSize()){
             playerAction = dodgeGasCloud();
         }
 
