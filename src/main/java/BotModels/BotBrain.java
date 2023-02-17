@@ -27,8 +27,11 @@ public class BotBrain {
     private static BotState TorpedoAttack = new TorpedoAttack();
     private static BotState FireTeleport = new FireTeleport();
     private static BotState Teleport = new Teleport();
+    private static BotState PickUpSupernova = new PickUpSupernova();
+    private static BotState FireSupernova = new FireSupernova();
+    private static BotState DetonateSupernova = new DetonateSupernova();
 
-    private static BotState[] states = {GatherFood, FireTeleport, Teleport , Run, UseShield, TorpedoAttack};
+    private static BotState[] states = {GatherFood, FireTeleport, Teleport , Run, UseShield, TorpedoAttack,PickUpSupernova,FireSupernova,DetonateSupernova};
     public static PlayerAction GetBotAction(){
         // Return : Action that will be executed by the bot based on the best state
         currentState = GetBestState();
