@@ -17,15 +17,21 @@ public class Run extends BotState{
     /* ABSTRACT METHOD */
     public float calculatePriorityScore() {
         // check if bot is in danger
+        int enemyVeryBigCount = veryBigEnemyCount();
+
+        if (enemyVeryBigCount > 0) {
+            return 0;
+        }
+
         int biggerEnemyCount = getBiggerEnemiesInRange(MEDIUM_DISTANCE + bot.getSize()).size();
         int teleportProjectileCount = getTeleporterInRange(MEDIUM_DISTANCE + bot.getSize()).size();
         int supernovaProjectileCount = getSupernovaProjInRange(MEDIUM_DISTANCE + bot.getSize()).size();
 
         
         float priorityScore = 
-            biggerEnemyCount * 50 + 
-            teleportProjectileCount * 150 + 
-            supernovaProjectileCount * 150;
+            biggerEnemyCount * 170 + 
+            teleportProjectileCount * 140 + 
+            supernovaProjectileCount * 140;
 
         return priorityScore;
     }
@@ -80,6 +86,14 @@ public class Run extends BotState{
             .stream().filter(x -> x.getId() != bot.getId() && x.getSize() > bot.getSize() && isObjectHeadingTo(x, bot.getPosition(), distance/DISTANCE_TO_TOLERANCE_RATIO))
             .collect(Collectors.toList()); 
         return biggerEnemies;
+    }
+
+    private int veryBigEnemyCount() {
+        // return enemy count that is bigger than 750
+        int bigEnemyCount = getPlayersAtBotArea(1000)
+        .stream().filter(x -> x.getId() != bot.getId() && x.getSize() > 750).collect(Collectors.toList()).size();
+
+        return bigEnemyCount;
     }
 
     private List<GameObject> getTeleporterInRange(int distance) {

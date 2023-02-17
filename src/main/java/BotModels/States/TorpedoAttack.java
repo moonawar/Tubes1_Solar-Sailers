@@ -8,7 +8,7 @@ import java.util.*;
 
 public class TorpedoAttack extends BotState{
     private final int VERY_CLOSE_DISTANCE = 50;
-    private final int CLOSE_DISTANCE = 150;
+    private final int CLOSE_DISTANCE = 220;
     private final int LARGE_NUM = 1000000;
 
     /* ABSTRACT METHOD */
