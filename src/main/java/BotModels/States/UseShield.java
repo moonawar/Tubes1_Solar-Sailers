@@ -35,7 +35,7 @@ public class UseShield extends BotState {
     private List<GameObject> getTorpedosInRange(int distance) {
         // return : list of torpedo that is heading to the bot
         List<GameObject> torpedoes = getGameObjectsByType(getGameObjectsAtBotArea(distance), ObjectTypes.TORPEDOSALVO).
-            stream().collect(Collectors.toList());
+            stream().filter(x -> isObjectHeadingToBot(x, 10)).collect(Collectors.toList());
         return torpedoes;
     }
    
