@@ -34,12 +34,12 @@ public class Run extends BotState{
         PlayerAction playerAction = new PlayerAction();
 
         // if in gas cloud or boundary
-        if (!getGasCloud().isEmpty() &&  bot.getSize() + 50 < distanceToGasCloud() + getGasCloud().get(0).getSize()){
-            playerAction = dodgeGasCloud();
+        if (!getGasCloud().isEmpty() &&  bot.getSize() > distanceToGasCloud() + getGasCloud().get(0).getSize()){
+            return dodgeGasCloud();
         }
 
-        if (bot.getSize() + 200  < distanceToBoundary()){
-            playerAction = dodgeBoundary();
+        if (distanceToBoundary()< 20+bot.getSize()){
+            return dodgeBoundary();
         }
 
         // set action to run

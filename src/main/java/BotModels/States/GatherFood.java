@@ -27,11 +27,11 @@ public class GatherFood extends BotState{
 
         if (getGameObjectsByType(ObjectTypes.FOOD).size() == 0) {
             // just avoid obstacles
-            if (!getGasCloud().isEmpty() &&  bot.getSize() + 50 < distanceToGasCloud() + getGasCloud().get(0).getSize()){
+            if (!getGasCloud().isEmpty() &&  bot.getSize() > distanceToGasCloud() + getGasCloud().get(0).getSize()){
                 playerAction = dodgeGasCloud();
             }
     
-            if (bot.getSize()  < distanceToBoundary()){
+            if (distanceToBoundary()< 20+bot.getSize()){
                 playerAction = dodgeBoundary();
             }
 
