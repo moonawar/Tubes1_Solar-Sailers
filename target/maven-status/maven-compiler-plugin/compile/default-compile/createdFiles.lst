@@ -1,26 +1,3 @@
-<<<<<<< HEAD
-BotModels/States/Teleport.class
-BotModels/States/DetonateSupernova.class
-BotModels/States/PickUpSupernova.class
-Models/PlayerAction.class
-Models/GameObject.class
-BotModels/States/FireSupernova.class
-BotModels/BotState.class
-Models/World.class
-Services/BotService.class
-BotModels/BotBrain.class
-Models/Position.class
-Main.class
-Enums/PlayerActions.class
-BotModels/States/FireTeleport.class
-BotModels/States/GatherFood.class
-Models/GameStateDto.class
-BotModels/States/Run.class
-Models/GameState.class
-BotModels/States/TorpedoAttack.class
-Enums/ObjectTypes.class
-BotModels/States/UseShield.class
-=======
 BotModels\States\TorpedoAttack.class
 BotModels\States\Run.class
 Enums\ObjectTypes.class
@@ -42,4 +19,3 @@ BotModels\States\UseShield.class
 BotModels\BotBrain.class
 Models\Position.class
 Models\World.class
->>>>>>> 843a497ba033a49e5595b382221e945ee9245424

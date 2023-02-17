@@ -10,7 +10,7 @@ public class PickUpSupernova extends BotState{
     /* ABSTRACT METHOD */
     public float calculatePriorityScore() {
         // Implementasi perhitungan skor prioritas untuk state PickUpSuperNova
-        if (supernoveDistance()<=250-bot.getSize() && supernoveDistance()!=-99){
+        if (supernoveDistance()<=250-bot.getSize() && supernoveDistance()!=-99 && bot.getSize() > 42){
             return 2000;
         } else {
             return 0;

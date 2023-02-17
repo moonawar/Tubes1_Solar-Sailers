@@ -1,45 +1,21 @@
-<<<<<<< HEAD
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/BotState.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Models/GameStateDto.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/States/DetonateSupernova.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Enums/ObjectTypes.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Enums/PlayerActions.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/States/FireSupernova.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Services/BotService.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/States/UseShield.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/States/FireTeleport.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Models/World.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Models/GameState.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Models/GameObject.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/BotBrain.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/States/GatherFood.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/States/Run.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/States/PickUpSupernova.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/States/TorpedoAttack.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Models/PlayerAction.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Models/Position.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/BotModels/States/Teleport.java
-/Users/putinabillaaidira/Downloads/KULIAH/Semester 4/Tubes1_Solar-Sailers/src/main/java/Main.java
-=======
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\Models\Position.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\BotModels\States\UseShield.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\BotModels\BotBrain.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\BotModels\States\Teleport.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\BotModels\States\FireTeleport.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\Models\GameState.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\BotModels\States\Run.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\BotModels\States\FireSupernova.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\BotModels\States\PickUpSupernova.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\Models\PlayerAction.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\Models\World.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\Enums\ObjectTypes.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\Models\GameStateDto.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\BotModels\States\DetonateSupernova.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\Models\GameObject.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\BotModels\States\GatherFood.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\BotModels\States\TorpedoAttack.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\BotModels\BotState.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\Enums\PlayerActions.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\Main.java
-D:\altha\Kuliah\Semester4\stima_code\tubes1\Tubes1_Solar-Sailers\src\main\java\Services\BotService.java
->>>>>>> 843a497ba033a49e5595b382221e945ee9245424
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\FireTeleport.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Enums\PlayerActions.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\Teleport.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Enums\ObjectTypes.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Services\BotService.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\PickUpSupernova.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Models\PlayerAction.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\TorpedoAttack.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Models\GameObject.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\Run.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Main.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\FireSupernova.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\UseShield.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Models\GameStateDto.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Models\Position.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Models\GameState.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\BotBrain.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\GatherFood.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\Models\World.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\BotState.java
+D:\Addin Munawwar\2023\2. February\Strategi Algoritma\Tubes1_Solar-Sailers\src\main\java\BotModels\States\DetonateSupernova.java

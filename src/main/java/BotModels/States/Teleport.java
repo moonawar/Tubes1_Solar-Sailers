@@ -34,7 +34,8 @@ public class Teleport extends BotState {
         if (myTeleporter.size() == 0) {
             // teleporter is dead
             //System.out.print("Teleport Priority Score: " + 0 + " #dead " + BotState.teleporterAngle);
-            //BotState.teleporterFired = false;
+            BotState.teleporterFired = false;
+            BotState.teleporterAngle = -1;
             return 0;
         } else {
             List<GameObject> targetAroundTeleporter = getPlayersAtArea(myTeleporter.get(0).position, bot.getSize() + 100).stream().
@@ -58,7 +59,7 @@ public class Teleport extends BotState {
                         return 900;
                     }
                 }
-                System.out.print("Teleport Priority Score: " + 0);
+                // System.out.print("Teleport Priority Score: " + 0);
                 return 0;
             }
         }
