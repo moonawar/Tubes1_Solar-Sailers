@@ -153,6 +153,19 @@ public class GatherFood extends BotState{
         return false;
     }
 
+    private double getDistanceToBotWithHeading(GameObject x){
+        // return : distance to the closest food considering the heading too
+        int headToFood = getHeading(x.position);
+        int botHeading = bot.getCurrHeading();
+
+        double actualDist = getDistanceToBot(x);
+    
+        if (Math.abs((headToFood - botHeading) % 360) <= 15) {
+            return actualDist;
+        } else {
+            return actualDist + 50;
+        }
+    }
 
     /* GATHER FOOD */
     private PlayerAction goToClosestFood(){
@@ -187,20 +200,6 @@ public class GatherFood extends BotState{
         return playerAction;
     }
 
-    private double getDistanceToBotWithHeading(GameObject x){
-        // return : distance to the closest food considering the heading too
-        int headToFood = getHeading(x.position);
-        int botHeading = bot.getCurrHeading();
-
-        double actualDist = getDistanceToBot(x);
-    
-        if (Math.abs((headToFood - botHeading) % 360) <= 15) {
-            return actualDist;
-        } else {
-            return actualDist + 50;
-        }
-    }
-       
 
     private PlayerAction goToNewArea(){
         // return : player action to go to the quadrant with the highest density of food and superfood
