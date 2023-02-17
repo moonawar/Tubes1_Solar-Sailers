@@ -78,6 +78,10 @@ public class GameObject {
     return this.torpedoSalvoCount;
   }
 
+  public Integer getSupernovaCount(){
+    return this.supernovaAvailable;
+  }
+
   public Integer getTeleporterCount(){
     return this.teleporterCount;
   }
