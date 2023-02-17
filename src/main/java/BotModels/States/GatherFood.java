@@ -31,7 +31,7 @@ public class GatherFood extends BotState{
                 playerAction = dodgeGasCloud();
             }
     
-            if (bot.getSize() + 200  < distanceToBoundary()){
+            if (bot.getSize()  < distanceToBoundary()){
                 playerAction = dodgeBoundary();
             }
 
@@ -40,14 +40,7 @@ public class GatherFood extends BotState{
 
         playerAction = goToClosestFood();
 
-        // obstacle avoidance
-        if (!getGasCloud().isEmpty() &&  bot.getSize() + 50 < distanceToGasCloud() + getGasCloud().get(0).getSize()){
-            playerAction = dodgeGasCloud();
-        }
-
-        if (bot.getSize() + 200  < distanceToBoundary()){
-            playerAction = dodgeBoundary();
-        }
+        
 
         // gather food if safe
         if (bot.getSize() <= 15 || foodDensityInRange(bot.getSize() + VERY_CLOSE_DISTANCE) >= 1){
@@ -57,6 +50,17 @@ public class GatherFood extends BotState{
         } else {
             playerAction = goToNewArea();
         }
+
+        // obstacle avoidance
+        if (!getGasCloud().isEmpty() &&  bot.getSize() + 0 < distanceToGasCloud() + getGasCloud().get(0).getSize()){
+            playerAction = dodgeGasCloud();
+        }
+
+        if (distanceToBoundary()< 20+bot.getSize()){
+            playerAction = dodgeBoundary();
+            System.out.println(distanceToBoundary());
+        }
+        
 
         return playerAction;
     }
@@ -210,7 +214,7 @@ public class GatherFood extends BotState{
         // return : player action to dodge the boundary
         PlayerAction playerAction = new PlayerAction();
         playerAction.action = PlayerActions.FORWARD;
-        playerAction.heading = (getHeading(gameState.getWorld().getCenterPoint()) + 60) % 360;
+        playerAction.heading = (getHeading(gameState.getWorld().getCenterPoint())) % 360;
 
         return playerAction;
     }
