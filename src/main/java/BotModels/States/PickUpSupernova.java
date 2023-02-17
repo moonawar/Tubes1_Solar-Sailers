@@ -9,18 +9,16 @@ public class PickUpSupernova extends BotState{
 
     /* ABSTRACT METHOD */
     public float calculatePriorityScore() {
-        return 100;
+        if (supernoveDistance()<=250-bot.getSize() && supernoveDistance()!=-99){
+            return 2000;
+        } else {
+            return 0;
+        }
     }
     
     public PlayerAction calculatePlayerAction(){
         PlayerAction playerAction = new PlayerAction();
-        // System.out.println("supernova distance = "+ supernoveDistance());
-        if (supernoveDistance()<=200){
             playerAction = pickUpSupernova();
-        } else {
-            playerAction.action = PlayerActions.STOP;
-            playerAction.heading = 0;
-        }
         return playerAction;
     }
 
