@@ -3,8 +3,6 @@ package BotModels;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.vecmath.Vector2d;
-
 import Enums.ObjectTypes;
 import Models.GameObject;
 import Models.GameState;
