@@ -9,7 +9,7 @@ import java.util.stream.*;
 
 public class UseShield extends BotState {
     /* CONSTANTS */
-    private final int CLOSE_DISTANCE = 80;
+    private final int CLOSE_DISTANCE = 150;
 
     /* ABSTRACT METHOD */
     public float calculatePriorityScore() {
